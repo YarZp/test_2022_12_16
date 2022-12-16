@@ -15,6 +15,13 @@ class TaskRepository {
         return Task::query()->where('complete', '=', false)->orderByDesc('created_at')->get();
     }
 
+    public static function getUncompleteFiveMinutes(): Collection {
+        $date = new \DateTime();
+        $date->sub(new \DateInterval('PT5M'));
+        $tasks = Task::query()->where('created_at', '<', $date)->where('complete', '=', false)->get();
+        return $tasks;
+    }
+
     public static function create(string $title, ?string $description, bool $complete = false) : Task {
         $task = new Task();
         $task->title = $title;

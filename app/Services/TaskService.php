@@ -45,4 +45,13 @@ class TaskService {
         }
         TaskRepository::setComplete($ids);
     }
+
+    public static function completeTasksOlderFiveMinutes(): void {
+        $tasks = TaskRepository::getUncompleteFiveMinutes();
+        $ids = [];
+        foreach ($tasks as $task) {
+            $ids[] = $task->id;
+        }
+        TaskRepository::setComplete($ids);
+    }
 }

@@ -17,6 +17,7 @@ php artisan migrate
 php artisan serve
 ```
 
+
 # Frontside project setup
 
 frontside is in todo-list directory
